@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package temperature;
+
+option go_package = "./temperature";
+
+// 溫度監測數據
+message TemperatureReading {
+  string device_id = 1; // 裝置唯一識別碼
+  float temperature = 2; // 溫度值 (攝氏)
+  int64 timestamp = 3;   // 時間戳 (Unix 秒)
+}
+
+// 溫度監測服務
+service TemperatureMonitor {
+  rpc SendTemperature(stream TemperatureReading) returns (stream Ack);
+}
+
+// 確認訊息
+message Ack {
+  string message = 1; // 確認訊息內容
+}

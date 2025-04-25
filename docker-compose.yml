@@ -1,0 +1,13 @@
+services:
+  go_grpc:
+    image: go_grpc
+    restart: always    
+    volumes:
+      - ./app:/app
+    working_dir: /app
+
+    command: /bin/sh
+    stdin_open: true
+    tty: true
+    ports:
+      - "50051:50051"
